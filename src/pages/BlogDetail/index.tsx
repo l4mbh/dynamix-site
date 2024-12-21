@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -75,7 +76,7 @@ const index = () => {
       }
     };
 
-    const fetchRelatedBlogs = async (currentBlog) => {
+    const fetchRelatedBlogs = async (currentBlog: any) => {
       try {
         if (currentBlog.categories.length > 0) {
           const categoryId = currentBlog.categories[0].slug; // Sử dụng danh mục đầu tiên
@@ -132,7 +133,7 @@ const index = () => {
           <h2 className='text-2xl uppercase tracking-widest mt-5 font-bold mb-4'>Related Blogs :</h2>
           <Slider {...settings}>
             {relatedBlogs.length > 0 ? (
-              relatedBlogs.map((relatedBlog) => (
+              relatedBlogs.map((relatedBlog: any) => (
                 <motion.div
                   key={relatedBlog.id}
                   initial={{ opacity: 0, scale: 0.9 }}

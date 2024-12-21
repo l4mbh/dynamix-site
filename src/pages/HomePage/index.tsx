@@ -1,5 +1,4 @@
-import { Grid2 } from '@mui/material';
-import HomeLayout from '../../layout/Home';
+import { Grid } from '@mui/material';
 import AboutSection from '../../component/Home/About/AboutSection';
 import ServicesSection from '../../component/Home/Services/ServicesSection';
 import ServiceProvide from '../../component/Home/ServicesProvide/ServiceProvide';
@@ -10,7 +9,7 @@ import HeroSection from '../../component/Home/Hero/HeroSection';
 
 const HomePage = () => {
   return (
-    <Grid2 container spacing={2} xs={12}>
+    <Grid container spacing={2} xs={12}>
       <HeroSection/>
       <ServiceProvide />
       <AboutSection />
@@ -18,7 +17,7 @@ const HomePage = () => {
       <HomeProjects />
       <HomeCustomer />
       <HomeBlog />
-    </Grid2>
+    </Grid>
   );
 };
 

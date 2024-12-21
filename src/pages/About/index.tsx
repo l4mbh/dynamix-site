@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageHeader from '../../component/parts/PageHeader'
 import PageLayout from '../../layout/PageLayout'
 import { aboutApi } from '../../api/aboutApi'
@@ -98,7 +99,7 @@ const index = () => {
       <Container>
         <div className="space-y-6 mt-5">
           <SectionHeader title='Meet our team' />
-          {team.data.map((member, index) => (
+          {team.data.map((member: any, index: any) => (
             <div key={index} className="flex items-center space-x-4 border border-gray-300 p-4 transition-all duration-200 hover:shadow-md">
               {/* Bên trái: Ảnh */}
               <div className="w-2/5">
@@ -121,7 +122,7 @@ const index = () => {
       <Container className='mt-[150px]'>
         <SectionHeader title='Certifications' />
         <div className="flex space-x-8 overflow-x-auto py-4 mb-5">
-          {certifications.data.map((cert, index) => (
+          {certifications.data.map((cert: any, index: any) => (
             <div key={index} className="flex flex-col items-center rounded-lg">
               {/* Hình ảnh chứng chỉ */}
               <img

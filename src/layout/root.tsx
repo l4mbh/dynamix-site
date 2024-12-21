@@ -2,15 +2,14 @@
 import React, { useEffect, useState } from 'react'
 import MainMenu from '../component/MainMenu';
 import Footer from '../component/Footer/Footer';
-import HeroSection from '../component/Home/Hero/HeroSection';
 import { Outlet } from 'react-router-dom';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const root: React.FC<RootLayoutProps> = ({ children }) => {
-  const [isHomePage, setIsHomePage] = useState<boolean>(false);
+const root: React.FC<RootLayoutProps> = () => {
+  const [, setIsHomePage] = useState<boolean>(false);
 
   useEffect(() => {
     // Kiểm tra nếu đang ở trang chủ

@@ -1,7 +1,6 @@
 // src/layout/Home/index.tsx
 import React from 'react';
 import MainMenu from '../../component/MainMenu';
-import { Container } from '@mui/material';
 import HeroSection from '../../component/Home/Hero/HeroSection';
 import Footer from '../../component/Footer/Footer';
 
