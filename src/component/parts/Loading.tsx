@@ -1,5 +1,4 @@
 import { Grid2 } from '@mui/material';
-import React from 'react'
 import { Oval } from 'react-loader-spinner';
 
 const Loading = () => {

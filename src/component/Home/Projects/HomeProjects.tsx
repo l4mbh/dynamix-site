@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import Carousel from '../../parts/Carousel'
+import { useEffect, useState } from 'react'
 import { Container } from '@mui/material'
 import SliderComponent from '../../parts/SliderComponent'
 import SectionHeader from '../../parts/SectionHeader'
@@ -8,12 +7,13 @@ import Loading from '../../parts/Loading'
 
 export type ProjectType = {
   data: Array<{
+    customer_name: string;
     id: number;
     title: string;
     description: string;
-    imgs_url: {
+    imgs_url: Array<{
       url: string;
-    };
+    }>;
   }>;
 };
 

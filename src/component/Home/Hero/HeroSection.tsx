@@ -43,7 +43,7 @@ const HeroSection = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    beforeChange: (current: number, next: number) => {
+    beforeChange: (_current: number, next: number) => {
       setSlideIndex(next); // Set slideIndex when slide changes
     },
     afterChange: (index: number) => {

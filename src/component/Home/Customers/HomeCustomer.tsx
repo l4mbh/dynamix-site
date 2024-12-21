@@ -1,5 +1,4 @@
 import { Container, Grid2 } from "@mui/material";
-import { use } from "motion/react-client";
 import React, { useEffect, useState } from "react";
 import Slider, { Settings } from "react-slick";
 import { homeApi } from "../../../api/homeApi";
@@ -44,7 +43,7 @@ const HomeCustomer: React.FC = () => {
     centerPadding: "0",
     initialSlide: 1,
     focusOnSelect: true, // Đảm bảo card ở giữa được chọn
-    beforeChange: (current: number, next: number) => {
+    beforeChange: (_current: number, next: number) => {
       setSelectedIndex(next); // Cập nhật selectedIndex khi thay đổi slide
     },
     responsive: [

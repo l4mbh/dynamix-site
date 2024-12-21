@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { Container, Grid } from '@mui/material'
 import { homeApi } from '../../../api/homeApi';
 import SectionHeader from '../../parts/SectionHeader';
-import { motion } from "motion/react"
 import { useEffect, useState } from 'react';
 import { ManageAccounts } from '@mui/icons-material';
 import Loading from '../../parts/Loading';
@@ -19,7 +20,7 @@ export type HomeProvidingServicesType = {
 
 const ServiceProvide = () => {
   const [services, setServices] = useState<HomeProvidingServicesType>();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [, setHoveredIndex] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +45,7 @@ const ServiceProvide = () => {
           We provide comprehensive solutions to meet the diverse needs of our clients, including technology consulting and implementation, system maintenance, and the provision of products and services to support operations. With a team of experienced professionals, we are committed to delivering optimal solutions to help your business grow sustainably and efficiently.
         </p>
         <Grid container  spacing={4} className="min-w-screen flex items-start justify-center">
-          {services.data.map((service, index) => (
+          {services.data.map((service, index: any) => (
             <Grid item xs={6} key={index}>
               <div
                 className="flex items-start justify-center h-full"

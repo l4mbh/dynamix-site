@@ -1,6 +1,6 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Container, Grid } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { homeServicesApi } from '../../../api/homeServicesApi'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  Card,CardMedia, Container, Grid } from '@mui/material'
+import { useEffect, useState } from 'react'
 import SectionHeader from '../../parts/SectionHeader'
 import { motion } from "motion/react"
 import { homeApi } from '../../../api/homeApi'
@@ -22,7 +22,7 @@ type ServicesType = {
 
 
 const ServicesSection = () => {
-  const [services, setServices] = useState<ServicesType>(null);
+  const [services, setServices] = useState<ServicesType>();
 
   const commonHost = import.meta.env.VITE_COMMON_HOST
 

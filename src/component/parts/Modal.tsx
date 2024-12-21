@@ -1,8 +1,6 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { Box, TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Close } from '@mui/icons-material';
 import MainButton from './MainButton';
 
 type ModalProps = {
