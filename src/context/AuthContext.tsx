@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/context/AuthContext.tsx
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axiosInstance from '../api/axiosInstance';
@@ -30,7 +32,11 @@ export const useAuth = (): AuthContextType => {
 };
 
 // Tạo provider cho AuthContext
-export const AuthProvider: React.FC = ({ children }) => {
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null); // Thêm state để lưu thông tin người dùng
   const [error, setError] = useState<string | null>(null);
@@ -59,13 +65,16 @@ export const AuthProvider: React.FC = ({ children }) => {
       setIsAuthenticated(true);
       setUser(user); // Cập nhật thông tin người dùng vào state
       setError(null); // Reset lỗi khi login thành công
-    } catch (error: any) {
-      if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorMessage = (error as any)?.response?.data?.message || 'An error occurred during login';
+        setError(errorMessage);
+        throw new Error(errorMessage);
       } else {
         setError('An error occurred during login');
+        throw new Error('An unknown error occurred');
       }
-      throw new Error(error.response?.data.message || 'Login failed');
+
     }
   };
 

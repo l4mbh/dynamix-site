@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import axiosInstance from '../../api/axiosInstance';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useAuth } from '../../context/AuthContext';
 
 const LoginRegisterForm: React.FC = () => {
@@ -107,25 +107,60 @@ const LoginRegisterForm: React.FC = () => {
 
   const { login } = useAuth();
 
+  function isAxiosError(error: unknown): error is AxiosError {
+    return (error as AxiosError).isAxiosError !== undefined;
+  }
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate() && mode === 'register') {
-      try {
-        await registerUser(formData.email, formData.password);
-      } catch (error) {
-        setAuthError(error.response?.data || error.message);
-        console.error('Register error:', error.response?.data || error.message);
-      }
-    } else if (validate() && mode === 'login') {
-      try {
-        await login(formData.email, formData.password);
-        navigate('/');
-      } catch (error) {
-        setAuthError(error.response?.data || error.message);
-        console.error('Login error:', error.response?.data || error.message);
+    if (validate()) {
+      if (mode === 'register') {
+        try {
+          await registerUser(formData.email, formData.password);
+        } catch (error) {
+          if (isAxiosError(error)) {
+            const errorMessage = error.response?.data
+              ? typeof error.response?.data === 'string'
+                ? error.response.data
+                : JSON.stringify(error.response.data) // Chuyển đối tượng thành chuỗi
+              : error.message || 'An unknown error occurred';
+
+            setAuthError(errorMessage);
+            console.error('Register error:', error.response?.data || error.message);
+          } else if (error instanceof Error) {
+            setAuthError(error.message);
+            console.error('Register error:', error.message);
+          } else {
+            setAuthError('An unknown error occurred during registration');
+            console.error('Register error: Unknown error');
+          }
+        }
+      } else if (mode === 'login') {
+        try {
+          await login(formData.email, formData.password);
+          navigate('/');
+        } catch (error) {
+          if (isAxiosError(error)) {
+            const errorMessage = error.response?.data
+              ? typeof error.response?.data === 'string'
+                ? error.response.data
+                : JSON.stringify(error.response.data) // Chuyển đối tượng thành chuỗi
+              : error.message || 'An unknown error occurred';
+
+            setAuthError(errorMessage);
+            console.error('Login error:', error.response?.data || error.message);
+          } else if (error instanceof Error) {
+            setAuthError(error.message);
+            console.error('Login error:', error.message);
+          } else {
+            setAuthError('An unknown error occurred during login');
+            console.error('Login error: Unknown error');
+          }
+        }
       }
     }
+
   };
 
   return (

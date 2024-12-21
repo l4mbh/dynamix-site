@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 interface ProjectType {
   data: Array<{
+    customer_name: string;
     id: number;
     title: string;
     description: string;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import PageHeader from '../../component/parts/PageHeader';
 import { Card, CardContent, CardMedia, Container, Typography } from '@mui/material';
@@ -9,21 +10,23 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 interface categoryType {
-  data: Array<{
-    data: {
-      name: string;
-      slug: string;
-      blogs: Array<BlogType>;
-    }
-  }>;
+  blogs: any;
+  slug: string;
+  name: string;
+  id: string;
 }
+
+interface categoriesType {
+  data: categoryType[];
+}
+
 
 const Index = () => {
   const [blogs, setBlogs] = useState<BlogType[] | null>(null);
   const [page, setPage] = useState(1); // Trang hiện tại
   const [totalPages, setTotalPages] = useState(1); // Tổng số trang
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState<categoryType[]>([]);
+  const [categories, setCategories] = useState<categoriesType>();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const commonHost = import.meta.env.VITE_COMMON_HOST
@@ -147,7 +150,7 @@ const Index = () => {
                             {post.short_content}
                           </Typography>
                           <div className="flex items-center">
-                            {post.categories.map((category) => (
+                            {post.categories.map((category: categoryType) => (
                               <span key={category.id} className="mt-4 w-fit text-xs text-secondary-text mx-2">
                                 {category.name}
                               </span>

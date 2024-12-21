@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import PageLayout from '../../layout/PageLayout'
@@ -7,36 +7,19 @@ import PageHeader from '../../component/parts/PageHeader'
 import { Container } from '@mui/material'
 import { servicesApi } from '../../api/servicesApi';
 import Loading from '../../component/parts/Loading';
-import SectionHeader from '../../component/parts/SectionHeader';
 import MainButton from '../../component/parts/MainButton';
 
 interface AccordionItem {
   title: string;
-  imageUrl: string;
-  content: string;
+  img_url: {
+    url: string
+  };
+  description: string;
 }
-
-const accordionData: AccordionItem[] = [
-  {
-    title: "Item 1",
-    imageUrl: "https://placehold.co/600x400?text=Content+1",
-    content: "This is the content for Item 1"
-  },
-  {
-    title: "Item 2",
-    imageUrl: "https://placehold.co/600x400?text=Content+2",
-    content: "This is the content for Item 2"
-  },
-  {
-    title: "Item 3",
-    imageUrl: "https://placehold.co/600x400?text=Content+3",
-    content: "This is the content for Item 3"
-  }
-];
 
 const index = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState<AccordionItem[]>([]);
 
   const commonHost = import.meta.env.VITE_COMMON_HOST
 
@@ -76,13 +59,13 @@ const index = () => {
           <div className="w-1/2 py-4">
             {activeIndex !== null && (
               <img
-                src={`${commonHost}${services[activeIndex]?.img_url.url}` || `${commonHost}/uploads/home_about_us_6b53cd24ea.png`}
+                src={`${commonHost}${services[activeIndex].img_url?.url}` || `${commonHost}/uploads/home_about_us_6b53cd24ea.png`}
                 className="w-full h-full object-cover"
               />
             )}
           </div>
           <div className="w-1/2 p-4">
-            {services.map((item, index) => (
+            {services.map((item: AccordionItem, index) => (
               <Accordion
                 key={index}
                 expanded={activeIndex === index}

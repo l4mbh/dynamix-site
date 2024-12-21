@@ -1,22 +1,34 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardActions, CardContent, CardHeader, Container, Grid, Grid2, Skeleton } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Key, ReactNode, useEffect, useState } from 'react'
 import SectionHeader from '../../parts/SectionHeader'
 import { homeApi } from '../../../api/homeApi';
 import MainButton from '../../parts/MainButton';
 import { Link } from 'react-router-dom';
 
 export interface BlogType {
+  id: Key | null | undefined;
+  imgs_url: any;
+  title: string;
+  publishedAt: any;
+  short_content: ReactNode;
+  categories: any;
+  documentId: any;
   data: Array<{
+    documentId: any;
     id: number;
     title: string;
     short_content: string;
-    imgs_url: {
+    imgs_url: Array<{
       formats: {
         thumbnail: {
           url: string;
         };
+        small: {
+          url: string;
+        };
       }
-    },
+    }>,
     publishedAt: string;
     categories: Array<{
       name: string;

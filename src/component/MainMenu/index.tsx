@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuDesktop from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
-import MainButton from "../parts/MainButton";
-import { Language, People, Person, Shop } from "@mui/icons-material";
+import { Language, Person } from "@mui/icons-material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAuth } from "../../context/AuthContext";
-import { div } from "motion/react-client";
 
 const MainMenu = () => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);

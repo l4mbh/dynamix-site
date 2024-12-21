@@ -1,8 +1,3 @@
-import React from 'react';
-import { Button } from '@mui/material';
-
-
-
 const MainButton = ({ title, style }: { title: string, style?: string }) => {
 
   if (style === 'outlined') {

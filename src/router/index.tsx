@@ -18,11 +18,11 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           {/* Sử dụng RootLayout cho tất cả các trang */}
-          <Route path='/' element={<RootLayout />}>
+          <Route path='/' element={<RootLayout children={undefined} />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="blog" element={<BlogLayout />}>
+            <Route path="blog" element={<BlogLayout children={undefined} />}>
               <Route index element={<Blog />} />
               <Route path=":id" element={<BlogDetail />} />
             </Route>

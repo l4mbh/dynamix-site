@@ -17,8 +17,6 @@ const index: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  const commonHost = import.meta.env.VITE_COMMON_HOST
-
   const services = [
     'Web Development',
     'Mobile App Development',
