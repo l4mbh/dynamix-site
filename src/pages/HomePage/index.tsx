@@ -6,19 +6,19 @@ import ServiceProvide from '../../component/Home/ServicesProvide/ServiceProvide'
 import HomeProjects from '../../component/Home/Projects/HomeProjects';
 import HomeCustomer from '../../component/Home/Customers/HomeCustomer';
 import HomeBlog from '../../component/Home/Blog/HomeBlog';
+import HeroSection from '../../component/Home/Hero/HeroSection';
 
 const HomePage = () => {
   return (
-    <HomeLayout>
-      <Grid2 container spacing={2} xs={12}>
-        <ServiceProvide />
-        <AboutSection />
-        <ServicesSection />
-        <HomeProjects />
-        <HomeCustomer />
-        <HomeBlog />
-      </Grid2>
-    </HomeLayout>
+    <Grid2 container spacing={2} xs={12}>
+      <HeroSection/>
+      <ServiceProvide />
+      <AboutSection />
+      <ServicesSection />
+      <HomeProjects />
+      <HomeCustomer />
+      <HomeBlog />
+    </Grid2>
   );
 };
 

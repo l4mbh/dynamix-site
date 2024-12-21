@@ -3,9 +3,18 @@ import { Button } from '@mui/material';
 
 
 
-const MainButton = ({title} : {title: string}) => {
+const MainButton = ({ title, style }: { title: string, style?: string }) => {
+
+  if (style === 'outlined') {
+    return (
+      <div className='m-auto border border-black hover:shadow-md hover:bg-yellow-400 transition-colors duration-200 max-w-fit !text-black !text-md !font-bold !capitalize !py-2 !px-4 cursor-pointer'>
+        {title}
+      </div>
+    )
+  }
+
   return (
-    <div className='mx-auto bg-yellow-500 hover:bg-yellow-400 transition-colors duration-200 max-w-fit !text-black !text-lg !font-bold !capitalize !p-2 !px-10 rounded-full cursor-pointer mt-5'>
+    <div className='m-auto bg-black hover:shadow-md hover:bg-yellow-400 transition-colors duration-200 max-w-fit !text-white !text-md !font-bold !capitalize !py-2 !px-4 cursor-pointer'>
       {title}
     </div>
   );

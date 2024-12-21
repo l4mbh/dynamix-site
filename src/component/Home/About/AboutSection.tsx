@@ -19,6 +19,8 @@ interface AboutUsType {
 const AboutSection = () => {
   const [aboutUs, setAboutUs] = React.useState<AboutUsType>();
 
+  const commonHost = import.meta.env.VITE_COMMON_HOST
+
 
   useEffect(() => {
     const fetchAboutUs = async () => {
@@ -33,13 +35,13 @@ const AboutSection = () => {
     fetchAboutUs();
   }, [])
 
-  if (!aboutUs) return <Grid2><Loading /></Grid2>
+  if (!aboutUs) return <Grid2 className='!w-full !min-h-full flex items-center justify-center relative'><Loading /></Grid2>
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Grid container spacing={5} className="flex items-start justify-center !my-5 h-full">
         <Grid item xs={6}>
-          <img src={`http://localhost:1337${aboutUs.data.img_url.url}`} alt="about-us" className='rounded-lg' />
+          <img src={`${commonHost}${aboutUs.data.img_url.url}`} alt="about-us" />
         </Grid>
         <Grid item xs={6} className='!h-full'>
           <div className='flex flex-col items-start justify-between'>
@@ -47,8 +49,8 @@ const AboutSection = () => {
               <SectionHeader title='About Us' />
               <p className='mt-5 text-slate-500 text-md'>{aboutUs.data.description}</p>
             </div>
-            <Link to={'/about'}>
-              <MainButton title='Read more' className='!mt-[50px] !text-white !bg-yellow-500 !border-yellow-500 !rounded-none' />
+            <Link to={'/about'} className='mt-6'>
+              <MainButton title='Read more' />
             </Link>
           </div>
 

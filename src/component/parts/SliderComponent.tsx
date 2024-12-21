@@ -29,20 +29,22 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ projects }) => {
     slidesToScroll: 1,
   };
 
+  const commonHost = import.meta.env.VITE_COMMON_HOST;
+
   return (
     <div>
       <Slider {...settings}>
         {projects.data.map((project) => (
           <div
             key={project.id}
-            className="flex w-full h-[400px] bg-gray-100 rounded-e-lg"
+            className="flex w-full h-[400px] bg-gray-100"
           >
             {/* Hình ảnh bên trái */}
             <div className="h-full w-full flex">
               <img
-                src={`http://localhost:1337${project.imgs_url[0].url}`}
+                src={`${commonHost}${project.imgs_url[0].url}`}
                 alt={project.title}
-                className="!min-w-[50%] !max-w-[50%] object-cover rounded-l-lg"
+                className="!min-w-[50%] !max-w-[50%] object-cover"
               />
               <div
                 className="!min-w-[50%] !max-w-[50%] h-full flex flex-col justify-center items-start p-8"

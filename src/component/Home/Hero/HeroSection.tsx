@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Button, Container, Grid2 } from '@mui/material';
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 import { homeApi } from '../../../api/homeApi';
 import { Link } from 'react-router-dom';
-import { Oval } from 'react-loader-spinner';
 import MainButton from '../../parts/MainButton';
 import Loading from '../../parts/Loading';
+import { Grid2 } from '@mui/material';
 
 type heroType = {
   data: Array<{
@@ -17,27 +16,11 @@ type heroType = {
   }>;
 };
 
-const slides = [
-  {
-    image: "http://localhost:1337/uploads/hero_2_2e266cf560.png",
-    title: "Discover Thermal Drone Solutions",
-    subtitle: "Innovative technology for a sustainable future.",
-  },
-  {
-    image: "http://localhost:1337/uploads/hero_2_2e266cf560.png",
-    title: "Optimize Energy Management",
-    subtitle: "Harness the power of renewable resources.",
-  },
-  {
-    image: "http://localhost:1337/uploads/hero_2_2e266cf560.png",
-    title: "Smart Management Systems",
-    subtitle: "Seamless integration for advanced operations.",
-  },
-];
-
 const HeroSection = () => {
   const [heroInfo, setHeroinfo] = useState<heroType | null>();
   const [slideIndex, setSlideIndex] = useState(0);
+
+  const commonHost = import.meta.env.VITE_COMMON_HOST
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,10 +51,10 @@ const HeroSection = () => {
     },
   };
 
-  // const backgroundImageUrl = `http://localhost:1337${heroInfo?.data.img_url.url}`;
-
   if (!heroInfo) {
-    return <Loading />
+    return <div className='w-full h-screen flex justify-center items-center'>
+      <Loading />
+    </div>
   }
 
   return (
@@ -85,7 +68,7 @@ const HeroSection = () => {
             <motion.div
               className="min-h-screen bg-cover bg-center flex items-center justify-center text-white"
               style={{
-                backgroundImage: `url('http://localhost:1337${slide.img_url.url}')`,
+                backgroundImage: `url('${commonHost}${slide.img_url.url}')`,
               }}
               initial={{ opacity: 0 }}
               animate={{
@@ -113,7 +96,7 @@ const HeroSection = () => {
                     delay: slideIndex === index ? 0 : 0.5, // Đảm bảo có độ trễ khi chuyển slide
                   }}
                 >
-                  <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                  <h1 className="text-4xl md:text-6xl font-bold mb-4 max-w-[1000px]">
                     {slide.title}
                   </h1>
                   <p className="text-lg md:text-xl mb-6 !text-slate-300">{slide.subtitle}</p>
@@ -124,7 +107,9 @@ const HeroSection = () => {
                     }}
                     transition={{ delay: 1, duration: 1 }}
                   >
-                    <MainButton title="Learn More" />
+                    <Link to="/about">
+                      <MainButton title="Learn More" />
+                    </Link>
                   </motion.div>
                 </motion.div>
               </div>

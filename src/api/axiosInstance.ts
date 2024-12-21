@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const apiHost= import.meta.env.VITE_API_HOST
+
+
 // Tạo instance Axios
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:1337/api', // URL gốc của API
+  baseURL: apiHost, // URL gốc của API
   timeout: 10000, // Thời gian timeout
 });
 

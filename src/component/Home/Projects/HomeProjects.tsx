@@ -4,6 +4,7 @@ import { Container } from '@mui/material'
 import SliderComponent from '../../parts/SliderComponent'
 import SectionHeader from '../../parts/SectionHeader'
 import { homeApi } from '../../../api/homeApi'
+import Loading from '../../parts/Loading'
 
 export type ProjectType = {
   data: Array<{
@@ -32,12 +33,12 @@ const HomeProjects = () => {
     fetchData();
   }, [])
 
-  if (!projects) return <p>Loading ...</p>
+  if (!projects) return <Container maxWidth="xl" className='!w-full !min-h-full flex items-center justify-center relative'><Loading /></Container>
 
 
   return (
-    <Container maxWidth='lg' className='my-10 !p-0'>
-        <SectionHeader title='Our Proud Achievements' />
+    <Container maxWidth="xl" className='my-10 !mx-auto px-4'>
+        <SectionHeader title='Our Proud Achievements' subtitle='The results of our hard work' />
         <SliderComponent projects={projects} />
     </Container>
   )

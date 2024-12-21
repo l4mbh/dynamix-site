@@ -20,6 +20,8 @@ const HomeCustomer: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [customers, setCustomers] = useState<Customers[]>([]);
 
+  const commonHost = import.meta.env.VITE_COMMON_HOST
+
   useEffect(() => {
     homeApi
       .getCustomersInfo()
@@ -63,8 +65,8 @@ const HomeCustomer: React.FC = () => {
 
   return (
     <Grid2 className="bg-gray-100 py-8 w-full">
-      <Container>
-        <SectionHeader title="Testimonials" align="center" />
+      <Container maxWidth="xl">
+        <SectionHeader title="Testimonials" align="center" subtitle="What our customers say about us" />
         <Slider {...settings}>
           {customers.map((testimonial, index) => (
             <div key={testimonial.id} className="p-4">
@@ -72,10 +74,10 @@ const HomeCustomer: React.FC = () => {
                 className={`transition-all transform ${selectedIndex === index
                   ? "scale-110" // Tăng kích thước cho card được chọn
                   : "scale-90" // Giảm kích thước cho card bên ngoài
-                  } bg-white rounded-lg shadow-lg p-6 text-center hover:scale-101 hover:shadow-xl`}
+                  } bg-white shadow-lg p-6 text-center hover:scale-101 hover:shadow-xl`}
               >
                 <img
-                  src={`http://localhost:1337${testimonial.img_url.url}`}
+                  src={`${commonHost}${testimonial.img_url.url}`}
                   alt={testimonial.customer_name}
                   className="w-20 h-20 mx-auto rounded-full mb-4"
                 />

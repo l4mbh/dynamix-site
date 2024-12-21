@@ -1,0 +1,36 @@
+/* FOOTER */
+.footer {
+  background-color: var(--second-color);
+  padding: 50px 0 20px;
+  position: relative;
+}
+.footer-logo span {
+  font-family: 'Oswald';
+  font-weight: 400;
+  font-size: 42px;
+  color: #fff;
+}
+
+.footerTitle {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-bold);
+}
+
+.footerList {
+  text-transform: capitalize;
+  padding-right: 32px;
+  color: var(--text-color-light);
+  font-size: 0.875rem;
+  font-weight: var(--font-normal);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .footerHighlight {
+    color: var(--first-color);
+    font-weight: var(--font-bold);
+  }
+}

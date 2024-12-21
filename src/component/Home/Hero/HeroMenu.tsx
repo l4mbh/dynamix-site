@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 const HeroMenu = () => {
 
+  const commonHost = import.meta.env.VITE_COMMON_HOST
+
   return (
     <div
         style={{
@@ -24,7 +26,7 @@ const HeroMenu = () => {
         <h2 className='flex items-center'>
           <img
             className="h-auto max-w-[150px]"
-            src="http://localhost:1337/uploads/aidynamix_logo_1d299852f5.png"
+            src={`${commonHost}/uploads/aidynamix_logo_1d299852f5.png`}
             alt="image description"
           />
         </h2>
@@ -34,22 +36,22 @@ const HeroMenu = () => {
             listStyle: 'none',
           }}
         > 
-          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-500'>
+          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-primary'>
             <Link to="/" className="!mx-3">
               Home
             </Link>
           </Button>
-          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-500'>
+          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-primary'>
             <Link to="/" className="!mx-3">
               About
             </Link>
           </Button>
-          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-500'>
+          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-primary'>
             <Link to="/" className="!mx-3">
               Services
             </Link>
           </Button>
-          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-500'>
+          <Button variant="text" color='warning' className='!min-h-full !text-lg !text-yellow-primary'>
             <Link to="/" className="!mx-3">
               Blog
             </Link>
