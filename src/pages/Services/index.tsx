@@ -59,7 +59,7 @@ const index = () => {
           <div className="w-1/2 py-4">
             {activeIndex !== null && (
               <img
-                src={`${commonHost}${services[activeIndex].img_url?.url}` || `${commonHost}/uploads/home_about_us_6b53cd24ea.png`}
+                src={`${commonHost}${services[activeIndex]?.img_url.url}` || `${commonHost}/uploads/home_about_us_6b53cd24ea.png`}
                 className="w-full h-full object-cover"
               />
             )}

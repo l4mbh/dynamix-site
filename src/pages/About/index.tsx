@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react'
 import PageHeader from '../../component/parts/PageHeader'
-import PageLayout from '../../layout/PageLayout'
 import { aboutApi } from '../../api/aboutApi'
 import { Container } from '@mui/material'
 import SectionHeader from '../../component/parts/SectionHeader'
@@ -43,22 +42,22 @@ const index = () => {
   }, []);
 
   if (loading) {
-    return <PageLayout>
+    return <>
       <PageHeader title='About us' />
       <Container className='!w-full p-5 !min-h-full flex items-center justify-center relative'>
         <Loading />
       </Container>
-    </PageLayout>
+    </>
   }
 
   if (error) {
-    return <PageLayout>
+    return <>
     <PageHeader title='About us' />
     <Container maxWidth="xl" className='!w-full p-5 !min-h-full flex flex-col items-center justify-center relative'>
       <Loading />
       {error}
     </Container>
-  </PageLayout>
+  </>
   }
 
   return (
