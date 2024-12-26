@@ -21,11 +21,11 @@ const root: React.FC<RootLayoutProps> = () => {
   }, []);
   return (
     <div className='relative z-0'>
-      <div style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+      <div style={{ position: 'sticky', top: 0, left: 0, right: 0, zIndex: 2 }}>
         <MainMenu />
       </div>
-      <main className='!min-h-full'>
-        <div style={{ height: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 2 }}>
+      <main className='!min-h-full !max-w-screen-xl'>
+        <div className='w-screen !p-0'>
           <Outlet/>
         </div>
       </main>

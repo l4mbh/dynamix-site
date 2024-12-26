@@ -38,12 +38,12 @@ const AboutSection = () => {
   if (!aboutUs) return <Grid2 className='!w-full !min-h-full flex items-center justify-center relative'><Loading /></Grid2>
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" className='py-14'>
       <Grid container spacing={5} className="flex items-start justify-center !my-5 h-full">
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={`${commonHost}${aboutUs.data.img_url.url}`} alt="about-us" />
         </Grid>
-        <Grid item xs={6} className='!h-full'>
+        <Grid item xs={12} md={6} className='!h-full'>
           <div className='flex flex-col items-start justify-between'>
             <div>
               <SectionHeader title='About Us' />

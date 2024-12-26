@@ -14,7 +14,7 @@ const PageLayout: React.FC<LayoutProps> = ({ children }) => {
         <MainMenu />
       </div>
       <main className='!min-h-full'>
-        <div style={{height: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 2}}>
+        <div>
           {children}
         </div>
       </main>

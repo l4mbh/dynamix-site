@@ -6,7 +6,6 @@ import { getPostsApi } from '../../api/getPostsApi';
 import { Card, CardContent, Typography, CardMedia, Container } from "@mui/material";
 import Slider from "react-slick";
 import { motion } from 'framer-motion';
-import SectionHeader from '../../component/parts/SectionHeader';
 import PageHeader from '../../component/parts/PageHeader';
 import Loading from '../../component/parts/Loading';
 import { Link } from 'react-router-dom';
@@ -93,7 +92,7 @@ const index = () => {
 
   if (!post) return <div>
     <PageHeader title="Loading..." />
-    <Container maxWidth="xl" className='!w-full !min-h-screen flex items-center justify-center'>
+    <Container maxWidth="xl" className='!p-0 !w-full !min-h-screen flex items-center justify-center'>
       <Loading />
     </Container>
   </div>
@@ -101,69 +100,71 @@ const index = () => {
   return (
     <>
       <PageHeader title={post.title} />
-      <div className="max-w-5xl mx-auto my-8 px-4" >
-        <Card className="shadow-lg !rounded-none">
-          <CardMedia
-            component="img"
-            height="400"
-            image={`${commonHost}${post.imgs_url[0].url}`}
-            alt="Solar Energy"
-            className="object-fit object-center max-h-[400px]"
-            id='blog'
-          />
-          <CardContent>
-            <div className="mb-[50px]">
-              <SectionHeader title={post.title} align="center" />
-              <Typography
-                variant="subtitle1"
-                className="text-gray-500 mb-4 p-2  text-center"
-              >
-                Published on <span className="font-semibold">{new Date(post.published_date).toDateString()}</span>
-              </Typography>
-            </div>
-            <Typography
-              variant="body1"
-              className="mb-4 leading-relaxed  p-2"
-              dangerouslySetInnerHTML={{ __html: post.blog_content }}
-            ></Typography>
-          </CardContent>
-        </Card>
-        {/* Related Blogs Section */}
-        <div>
-          <h2 className='text-2xl uppercase tracking-widest mt-5 font-bold mb-4'>Related Blogs :</h2>
-          <Slider {...settings}>
-            {relatedBlogs.length > 0 ? (
-              relatedBlogs.map((relatedBlog: any) => (
-                <motion.div
-                  key={relatedBlog.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="px-4"
+      <Container className='p-0 mx-auto'>
+        <div className="max-w-5xl mx-auto my-8 lg:px-4" >
+          <Card className="shadow-lg !rounded-none">
+            <CardMedia
+              component="img"
+              height="400"
+              image={`${commonHost}${post.imgs_url[0].url}`}
+              alt="Solar Energy"
+              className="object-fit object-center max-h-[400px] mb-5"
+              id='blog'
+            />
+            <CardContent className='pb-28'>
+              <div className="my-20">
+                <Typography variant="h4" className="text-4xl uppercase font-bold mb-4 p-2 text-center" title={post.title} align="center">{post.title}</Typography>
+                <Typography
+                  variant="subtitle1"
+                  className="text-gray-500 mb-4 p-2 text-center"
                 >
-                  <Link to={`/blog/${relatedBlog.documentId}`}>
-                    <div className="shadow-md overflow-hidden group hover:cursor-pointer">
-                      <img
-                        src={relatedBlog.imgs_url?.[0]?.formats?.small?.url
-                          ? `http://localhost:1337${relatedBlog.imgs_url[0].formats.small.url}`
-                          : '/placeholder.jpg'}
-                        alt={relatedBlog.title}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
-                      />
-                      <div className="p-4">
-                        <h3 className="text-lg font-bold line-clamp-2 group-hover:text-yellow-primary">{relatedBlog.title}</h3>
-                        <p className="text-sm text-gray-600 line-clamp-3">{relatedBlog.short_content}</p>
+                  Published on <span className="font-semibold">{new Date(post.published_date).toDateString()}</span>
+                </Typography>
+              </div>
+              <Typography
+                variant="body1"
+                className="mb-4 leading-relaxed p-2 !text-lg"
+                dangerouslySetInnerHTML={{ __html: post.blog_content }}
+              ></Typography>
+            </CardContent>
+          </Card>
+          {/* Related Blogs Section */}
+          <div>
+            <h2 className='text-2xl uppercase tracking-widest mt-5 font-bold mb-4'>Related Blogs :</h2>
+            <Slider {...settings}>
+              {relatedBlogs.length > 0 ? (
+                relatedBlogs.map((relatedBlog: any) => (
+                  <motion.div
+                    key={relatedBlog.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="px-4"
+                  >
+                    <Link to={`/blog/${relatedBlog.documentId}`}>
+                      <div className="shadow-md overflow-hidden group hover:cursor-pointer">
+                        <img
+                          src={relatedBlog.imgs_url?.[0]?.formats?.small?.url
+                            ? `http://localhost:1337${relatedBlog.imgs_url[0].formats.small.url}`
+                            : '/placeholder.jpg'}
+                          alt={relatedBlog.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                        />
+                        <div className="p-4">
+                          <h3 className="text-lg font-bold line-clamp-2 group-hover:text-yellow-primary">{relatedBlog.title}</h3>
+                          <p className="text-sm text-gray-600 line-clamp-3">{relatedBlog.short_content}</p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))
-            ) : (
-              <p>No related blogs found.</p>
-            )}
-          </Slider>
+                    </Link>
+                  </motion.div>
+                ))
+              ) : (
+                <p>No related blogs found.</p>
+              )}
+            </Slider>
+          </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  Card,CardMedia, Container, Grid } from '@mui/material'
+import { Card, CardMedia, Container, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import SectionHeader from '../../parts/SectionHeader'
 import { motion } from "motion/react"
@@ -24,7 +24,8 @@ type ServicesType = {
 const ServicesSection = () => {
   const [services, setServices] = useState<ServicesType>();
 
-  const commonHost = import.meta.env.VITE_COMMON_HOST
+  const commonHost = import.meta.env.VITE_COMMON_HOST;
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -67,14 +68,24 @@ const ServicesSection = () => {
             )}
 
             {/* Title: Di chuyển từ dưới lên khi hover */}
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
-              whileHover={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="uppercase text-center text-lg max-w-72 text-wrap">{service.title}</h3>
-            </motion.div>
+            {
+              !isMobile ? <motion.div
+                className="absolute top-0 left-0 h-full inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white overflow-hidden sm:opacity-0 sm:hover:opacity-100 sm:hover:translate-y-0"
+                initial={{ opacity: 0, y: 50 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{ opacity: 'unset' }}
+              >
+                <h3 className="uppercase text-center text-lg max-w-72 text-wrap">{service.title}</h3>
+              </motion.div>
+                : <motion.div
+                  className="absolute top-0 left-0 h-full inset-0 bg-black bg-opacity-30 flex items-center justify-center text-white overflow-hidden"
+                  initial={{ opacity: 1, y: 0 }}
+                  whileHover={{ opacity: 1, y: 0 }}
+                >
+                  <h3 className="uppercase text-2xl !text-white text-center max-w-72 text-wrap !opacity-100">{service.title}</h3>
+                </motion.div>
+            }
           </Card>
         </motion.div>
       </Grid>
@@ -83,7 +94,7 @@ const ServicesSection = () => {
 
   return (
     <div className='my-5 w-full min-h-[700px] bg-cover bg-center bg-fixed !bg-blend-soft-light' style={{ backgroundImage: `url('${commonHost}/uploads/ps_4_c9756f1126.jpg')` }}>
-      <div className='w-full h-full flex items-center bg-black bg-opacity-80'>
+      <div className='w-full lg:h-[700px] flex items-center bg-black bg-opacity-80'>
         <Container maxWidth="xl" className='mx-auto py-5'>
           <SectionHeader theme='dark' align='center' title='The fields we are working in include' />
           <Grid container spacing={4} className='flex flex-row-reverse '>

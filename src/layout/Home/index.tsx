@@ -16,7 +16,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
       </div>
       <main className='!min-h-full'>
         <HeroSection />
-        <div style={{height: 'auto', display: 'flex', flexDirection: 'column', flexGrow: 2}}>
+        <div style={{height: 'auto'}}>
           {children}
         </div>
       </main>

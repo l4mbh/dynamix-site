@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const fetchResource = (apiFunction: () => Promise<{ data: any }>, setState: any) => async () => {
   try {
     const respone = await apiFunction();

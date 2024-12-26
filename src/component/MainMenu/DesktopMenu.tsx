@@ -9,6 +9,7 @@ interface MenuDesktopProps {
   isScrolled: boolean;
 }
 
+
 const MenuDesktop: React.FC<MenuDesktopProps> = ({ isSubmenuOpen, handleSubmenuToggle, isScrolled }) => {
   return (
     <ul className="flex items-center justify-center list-none h-full relative lg:flex">

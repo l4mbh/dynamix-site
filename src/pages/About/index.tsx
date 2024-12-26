@@ -65,15 +65,15 @@ const index = () => {
       <PageHeader title='About us' />
 
       <Container maxWidth="xl">
-        <div className="flex mt-[100px]">
-          <div className="w-1/2 ">
+        <div className="flex flex-col lg:flex-row !w-full mt-[100px]">
+          <div className="w-full lg:w-1/2 ">
             <img
               src={`${commonHost}${about.data.img_url.url}`}
               alt="Sample Image"
               className="w-full h-full object-cover "
             />
           </div>
-          <div className="w-1/2 px-4">
+          <div className="w-full mt-5 text-center lg:mt-0 lg:w-1/2 px-4">
             <SectionHeader title='Who we are' />
             <div
               className="prose text-justify"

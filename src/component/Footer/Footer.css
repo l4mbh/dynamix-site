@@ -4,6 +4,8 @@
   padding: 50px 0 20px;
   position: relative;
 }
+
+/* Logo */
 .footer-logo span {
   font-family: 'Oswald';
   font-weight: 400;
@@ -11,6 +13,7 @@
   color: #fff;
 }
 
+/* Tiêu đề của các phần trong Footer */
 .footerTitle {
   color: #fff;
   text-transform: uppercase;
@@ -19,6 +22,7 @@
   font-weight: var(--font-bold);
 }
 
+/* Danh sách liên kết trong Footer */
 .footerList {
   text-transform: capitalize;
   padding-right: 32px;
@@ -28,9 +32,101 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
 
-  .footerHighlight {
-    color: var(--first-color);
-    font-weight: var(--font-bold);
+/* Các phần tử nổi bật trong footer */
+.footerHighlight {
+  color: var(--first-color);
+  font-weight: var(--font-bold);
+}
+
+/* Đảm bảo footer hiển thị tốt trên màn hình nhỏ */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footerTitle {
+    font-size: 1rem;
+  }
+
+  .footerList {
+    font-size: 0.75rem;
+    padding-right: 20px;
+  }
+
+  .footer-logo span {
+    font-size: 36px;
+  }
+
+  .footer-logo {
+    justify-content: center; /* Căn giữa logo */
+  }
+
+  .footer-social {
+    justify-content: center; /* Căn giữa các icon mạng xã hội */
+    gap: 12px; /* Khoảng cách giữa các icon */
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer-logo span {
+    font-size: 30px;
+  }
+
+  .footerTitle {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .footerList {
+    font-size: 0.75rem;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .footer-social {
+    flex-direction: column; /* Các icon mạng xã hội xếp theo chiều dọc */
+    align-items: center;
+  }
+
+  .footer-logo {
+    margin-bottom: 20px;
+  }
+
+  .col-span-5, .col-span-4, .col-span-3 {
+    grid-column: span 12; /* Các phần tử trong footer chiếm full width trên màn hình nhỏ */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 10px;
+  }
+
+  .footer-logo span {
+    font-size: 26px;
+  }
+
+  .footerTitle {
+    font-size: 0.75rem;
+  }
+
+  .footerList {
+    font-size: 0.625rem;
+  }
+
+  .footer-logo {
+    flex-direction: column;
+  }
+
+  .footer-social {
+    gap: 10px; /* Giảm khoảng cách giữa các icon */
   }
 }

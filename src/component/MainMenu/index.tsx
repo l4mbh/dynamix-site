@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import MenuDesktop from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 import { Language, Person } from "@mui/icons-material";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAuth } from "../../context/AuthContext";
 
 const MainMenu = () => {
@@ -35,7 +34,8 @@ const MainMenu = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = document.documentElement.scrollTop;
+      console.log(currentScrollY)
 
       if (currentScrollY > lastScrollY && currentScrollY > 60) {
         setShowDesktopMenu(false); // Ẩn menu khi cuộn xuống
@@ -49,10 +49,34 @@ const MainMenu = () => {
 
     window.addEventListener("scroll", handleScroll);
 
+    if(isMenuOpen && isMobile) {
+      setIsMenuOpen(false);
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerMenu = document.getElementById('hamburger-menu'); // Giả sử bạn có id này cho nút hamburger
+
+      // Kiểm tra nếu click bên ngoài mobile menu và không phải là click vào hamburger menu
+      if (mobileMenu && !mobileMenu.contains(e.target as Node) && !hamburgerMenu?.contains(e.target as Node)) {
+        setIsMenuOpen(false); // Đóng menu
+      }
+    };
+
+    // Lắng nghe sự kiện click
+    window.addEventListener('click', handleClickOutside);
+
+    // Dọn dẹp sự kiện khi component bị hủy
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const handleHamburgerClick = () => {
     setIsMenuOpen((prev) => !prev); // Mở hoặc đóng menu mobile
@@ -75,7 +99,7 @@ const MainMenu = () => {
           exit={{ y: -100 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           style={{
-            position: "sticky",
+            position: "fixed",
             top: 0,
             left: 0,
             right: 0,
@@ -106,7 +130,7 @@ const MainMenu = () => {
 
             {/* Nút Hamburger (chỉ hiển thị trên màn hình nhỏ) */}
             {isMobile && (
-              <div className="col-span-6 w-full !h-full flex items-center justify-end">
+              <div className="col-span-6 w-full !h-full flex items-center justify-end" id="hamburger-menu">
                 <Button
                   onClick={handleHamburgerClick}
                   className="lg:hidden"
@@ -118,9 +142,9 @@ const MainMenu = () => {
                     gap: "3px",
                   }}
                 >
-                  <span className="h-1 w-7 bg-black"></span>
-                  <span className="h-1 w-7 bg-black"></span>
-                  <span className="h-1 w-7 bg-black"></span>
+                  <span className={`h-1 w-7 bg-${isScrolled ? "white" : "black"}`}></span>
+                  <span className={`h-1 w-7 bg-${isScrolled ? "white" : "black"}`}></span>
+                  <span className={`h-1 w-7 bg-${isScrolled ? "white" : "black"}`}></span>
                 </Button>
               </div>
             )}
@@ -138,9 +162,6 @@ const MainMenu = () => {
 
             {!isMobile && (
               <div className="col-span-4 w-full h-full flex items-center justify-end gap-3">
-                <div>
-                  <ShoppingCartIcon />
-                </div>
                 <div className="relative group">
                   <Language />
                   <ul className={`absolute group-hover:block border hidden top-full right-[-10px] ${isScrolled ? "!bg-[#252525]" : "!bg-white"} p-2 shadow-lg`}>
@@ -176,7 +197,7 @@ const MainMenu = () => {
       )}
       {/* Mobile menu */}
       {isMobile && isMenuOpen && (
-        <div>
+        <div id="mobile-menu">
           <MobileMenu
             isSubmenuOpen={isSubmenuOpen}
             setIsMenuOpen={setIsMenuOpen}

@@ -87,7 +87,7 @@ const Index = () => {
     <div>
       <PageHeader title="Blog" />
       <Container maxWidth="xl" className="py-5">
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
           <div className="col-span-1">
             <div className="flex flex-col gap-6">
               <span className="text-3xl tracking-widest font-semibold mb-4 uppercase">Categories</span>
@@ -112,11 +112,11 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="col-span-3">
-            <span className="text-3xl tracking-widest font-semibold mb-4 uppercase p-4">Posts</span>
+          <div className="col-span-1 lg:col-span-3">
+            <span className="text-3xl tracking-widest font-semibold mb-4 uppercase lg:p-4">Posts</span>
             {
               blogs.length > 0 ? (
-                <div className="grid lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 p-4">
+                <div className="grid lg:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-5 mt-5 lg:p-4">
                   {blogs.map((post) => (
                     <Link key={post.id} to={`/blog/${post.documentId}`}>
                       <Card

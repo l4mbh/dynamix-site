@@ -9,8 +9,8 @@ import HeroSection from '../../component/Home/Hero/HeroSection';
 
 const HomePage = () => {
   return (
-    <Grid container spacing={2} xs={12}>
-      <HeroSection/>
+    <Grid>
+      <HeroSection />
       <ServiceProvide />
       <AboutSection />
       <ServicesSection />

@@ -38,21 +38,20 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ projects }) => {
         {projects.data.map((project) => (
           <div
             key={project.id}
-            className="flex w-full h-[400px] bg-gray-100"
+            className="flex w-full h-[600px] lg:h-[400px] bg-gray-100 relative"
           >
-            {/* Hình ảnh bên trái */}
-            <div className="h-full w-full flex">
+            <div className="h-full w-full flex-col md:flex-row absolute lg:position-static top-0 left-0 right-0">
               <img
                 src={`${commonHost}${project.imgs_url[0].url}`}
                 alt={project.title}
-                className="!min-w-[50%] !max-w-[50%] object-cover"
+                className="lg:!min-w-[50%] h-full lg:!w-1/2 w-full lg:!max-w-[50%] absolute lg:position-static top-0 left-0 right-0"
               />
               <div
-                className="!min-w-[50%] !max-w-[50%] h-full flex flex-col justify-center items-start p-8"
+                className="lg:!min-w-[50%] lg:!max-w-[50%] bg-black bg-opacity-75 lg:!bg-white absolute lg:position-static top-0 bottom-0 right-0 z-10 h-full flex flex-col justify-center items-start p-8 overflow-scroll lg:overflow-auto"
               >
-                <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-                <p className="text-gray-600 mb-6">{project.description}</p>
-                <p>Collaboration with: <span className='font-extrabold'>{project.customer_name}</span></p>
+                <h2 className="text-3xl font-bold mb-4 uppercase !text-white lg:!text-black">{project.title}</h2>
+                <p className="!text-white lg:!text-gray-600 mb-6">{project.description}</p>
+                <p className='!text-white lg:!text-gray-600'>Collaboration with: <span className='font-extrabold text-white lg:text-black'>{project.customer_name}</span></p>
               </div>
             </div>
           </div>
